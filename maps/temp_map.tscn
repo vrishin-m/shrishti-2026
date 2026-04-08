@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvl56uv1nu3cu"]
+
+[ext_resource type="Script" uid="uid://cuarrm0iu4o4s" path="res://maps/map.gd" id="1_iw5e3"]
+
+[node name="temp_map" type="StaticBody2D"]
+script = ExtResource("1_iw5e3")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.785574, 0, 0.213611, 1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

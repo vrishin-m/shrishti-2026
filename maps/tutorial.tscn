@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://rhg6t0nwpr3d"]
+
+[ext_resource type="Script" uid="uid://c8idvv1k34wnq" path="res://maps/tutorial.gd" id="1_g13kn"]
+[ext_resource type="PackedScene" uid="uid://caaxuiwmdu0x6" path="res://player/character.tscn" id="1_rg8b3"]
+
+[node name="tutorial" type="Node2D"]
+script = ExtResource("1_g13kn")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_rg8b3")]
+position = Vector2(560, 374)
+scale = Vector2(0.587093, 0.635587)
