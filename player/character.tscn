@@ -1,0 +1,90 @@
+[gd_scene load_steps=15 format=3 uid="uid://caaxuiwmdu0x6"]
+
+[ext_resource type="Texture2D" uid="uid://bl20pemwhbsce" path="res://player/d248e58a-17c9-4b41-95ff-a1fafb33dbe0-removebg-preview.png" id="1_xx22o"]
+[ext_resource type="Script" uid="uid://dxtwnm7m216dr" path="res://player/state_machine_controller.gd" id="2_74pxd"]
+[ext_resource type="Script" uid="uid://ds6xc7vuu42yn" path="res://player/node_state_machine.gd" id="3_xhlcg"]
+[ext_resource type="Script" uid="uid://b5fhk0jrvddpe" path="res://player/jump.gd" id="4_74pxd"]
+[ext_resource type="Script" uid="uid://dfg0wvlno7pvn" path="res://player/wave.gd" id="4_xhlcg"]
+[ext_resource type="Script" uid="uid://cmy3542achmyg" path="res://player/cross.gd" id="6_sd8wt"]
+[ext_resource type="Script" uid="uid://bmjsbahda4r5s" path="res://player/loop.gd" id="7_edx4p"]
+[ext_resource type="Script" uid="uid://c0xjri1ywix2f" path="res://player/walk.gd" id="8_jmpku"]
+
+[sub_resource type="Animation" id="Animation_4gtrb"]
+resource_name = "cross"
+
+[sub_resource type="Animation" id="Animation_ga8vp"]
+resource_name = "jump"
+
+[sub_resource type="Animation" id="Animation_22b1n"]
+resource_name = "loop"
+
+[sub_resource type="Animation" id="Animation_jmpku"]
+resource_name = "walk"
+
+[sub_resource type="Animation" id="Animation_afh3s"]
+resource_name = "wave"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_afh3s"]
+_data = {
+&"cross": SubResource("Animation_4gtrb"),
+&"jump": SubResource("Animation_ga8vp"),
+&"loop": SubResource("Animation_22b1n"),
+&"walk": SubResource("Animation_jmpku"),
+&"wave": SubResource("Animation_afh3s")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3.60001, -12.6)
+texture = ExtResource("1_xx22o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+&"": SubResource("AnimationLibrary_afh3s")
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-404.6, -248.6)
+polygon = PackedVector2Array(328, 311, 328, 266, 347, 260, 371, 250, 375, 242, 369, 220, 367, 208, 370, 206, 368, 198, 372, 180, 383, 166, 403, 163, 417, 169, 424, 176, 432, 177, 437, 188, 439, 199, 438, 206, 441, 207, 441, 212, 441, 219, 438, 226, 435, 235, 426, 245, 432, 249, 456, 258, 476, 266, 474, 310)
+
+[node name="StateMachineController" type="Node" parent="." node_paths=PackedStringArray("node_state_machine", "player", "anim_player")]
+script = ExtResource("2_74pxd")
+node_state_machine = NodePath("../NodeStateMachine")
+player = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+gamemode = "split"
+
+[node name="NodeStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state", "character", "anim_player")]
+script = ExtResource("3_xhlcg")
+initial_node_state = NodePath("walk")
+character = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="wave" type="Node" parent="NodeStateMachine" node_paths=PackedStringArray("character", "anim_player")]
+script = ExtResource("4_xhlcg")
+character = NodePath("../..")
+anim_player = NodePath("../../AnimationPlayer")
+
+[node name="jump" type="Node" parent="NodeStateMachine" node_paths=PackedStringArray("character", "anim_player")]
+script = ExtResource("4_74pxd")
+character = NodePath("../..")
+anim_player = NodePath("../../AnimationPlayer")
+
+[node name="cross" type="Node" parent="NodeStateMachine" node_paths=PackedStringArray("character", "anim_player")]
+script = ExtResource("6_sd8wt")
+character = NodePath("../..")
+anim_player = NodePath("../../AnimationPlayer")
+
+[node name="loop" type="Node" parent="NodeStateMachine" node_paths=PackedStringArray("character", "anim_player")]
+script = ExtResource("7_edx4p")
+character = NodePath("../..")
+anim_player = NodePath("../../AnimationPlayer")
+
+[node name="walk" type="Node" parent="NodeStateMachine" node_paths=PackedStringArray("character", "anim_player")]
+script = ExtResource("8_jmpku")
+character = NodePath("../..")
+anim_player = NodePath("../../AnimationPlayer")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachineController" method="_on_animation_player_animation_finished"]

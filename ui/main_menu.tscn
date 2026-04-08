@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlsjl5vdwuswn"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rhts7"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.50217
+anchor_top = 0.932099
+anchor_right = 0.50217
+anchor_bottom = 0.932099
+offset_left = -93.5
+offset_top = -48.0
+offset_right = 93.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "BEGIN TUTORIAL"
+icon = SubResource("PlaceholderTexture2D_rhts7")
+metadata/_edit_use_anchors_ = true
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.504774
+anchor_top = 0.819444
+anchor_right = 0.504774
+anchor_bottom = 0.819444
+offset_left = -204.5
+offset_top = -55.0
+offset_right = 204.5
+grow_horizontal = 2
+grow_vertical = 0
+placeholder_text = "Enter custom song title"
+metadata/_edit_use_anchors_ = true
