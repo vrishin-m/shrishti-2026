@@ -12,6 +12,7 @@ class obstacle_class extends Node:
 		var obst_scene = self.scene
 		var instance = obst_scene.instantiate()
 		instance.global_position = Vector2(1200,400)
+		instance.scale = Vector2(1.4,1.4)
 		var tree = Engine.get_main_loop() as SceneTree
 		tree.current_scene.add_child(instance)
 		
@@ -20,7 +21,7 @@ class obstacle_class extends Node:
 
 
 	
-
+var time_adjustment=1.8
 var jump = obstacle_class.new(preload("res://obstacles/jump.tscn"))
 var cross = obstacle_class.new(preload("res://obstacles/cross.tscn"))
 var wave = obstacle_class.new(preload("res://obstacles/wave.tscn"))
@@ -49,13 +50,15 @@ func _ready() -> void:
 	timestamps = global.tutorial_json
 	times = timestamps.keys()
 	obstacles = timestamps.values()
+	$Button.visible= false
+	$Button.disabled=true
 	
 	
 
 func _physics_process(delta: float) -> void:
 	run_time +=delta
 	if times:
-		if float(times[0])-  run_time <=0.01:
+		if float(times[0])-time_adjustment-  run_time <=0.01:
 			print("NUTJAUJNGJBGAGR")
 			if len(obstacles[0]) >1:
 				chosen_obst = Array(obstacles[0].split(""))
@@ -88,9 +91,23 @@ func _physics_process(delta: float) -> void:
 			times.remove_at(0)
 			obstacles.remove_at(0)
 		
-			
+	else:
+		$Timer.start()
+		return
+		
 			
 		
 		
 	
 	
+
+
+func _on_button_button_down() -> void:
+	get_tree().change_scene_to_file("res://ui/main_menu.tscn")
+
+
+func _on_timer_timeout() -> void:
+	print("tutorial done!")	
+	$tip.text = "tutorial done! you're now ready for the real game"	
+	$Button.visible= true
+	$Button.disabled=false

@@ -7,7 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://cvwl6b6j87l2e" path="res://songs/tut_spedup.wav" id="5_50mgq"]
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(0, -1)
 script = ExtResource("1_fwf7s")
 
 [node name="character" parent="." instance=ExtResource("1_rg8b3")]
@@ -37,3 +36,17 @@ texture = ExtResource("4_2337y")
 stream = ExtResource("5_50mgq")
 volume_db = 5.0
 autoplay = true
+
+[node name="Button" type="Button" parent="."]
+offset_left = 890.0
+offset_top = 330.0
+offset_right = 1041.0
+offset_bottom = 372.0
+text = "Go back to menu"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

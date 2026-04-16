@@ -15,12 +15,41 @@ func _on_button_button_down() -> void:
 	
 
 
-func _on_http_request_request_completed(result: int, response_code: int, headers: PackedByteArray, body: PackedByteArray) -> void:
-	json = JSON.parse_string(headers.get_string_from_utf8())
-	global.json=json
-	mp3_request.request("http://127.0.0.1:8000/download/file")
+func _on_http_request_request_completed(result: int, response_code: int, headers, body: PackedByteArray) -> void:
+	#json = JSON.parse_string(headers.get_string_from_utf8())
+	#global.json=json
+	#mp3_request.request("http://127.0.0.1:8000/download/file")
+	print(headers)
+	#for header in headers:
+			#var json_string = header.split(":", true, 1)[1].strip_edges()
+			#var json_data = JSON.parse_string(json_string)
+			#print("Extracted Header Data: ", json_data)
+	var json_data = (JSON.parse_string(headers[2].split(":", true, 1)[1]))
+	print(json_data)
+	global.json = json_data
+	global.song = body
+	#var stsong = AudioStreamMP3.new()
+	#stream.data = body 
+#
+	#var player = AudioStreamPlayer.new()
+	#add_child(player)
+	#player.stream = stream
+	#player.play()
+	#var file_path = "user://download.mp3"
+	#var file = FileAccess.open(file_path, FileAccess.WRITE)
+	#file.store_buffer(body)
+	#file.close()
 	
-	print(json)
+	#var stream = AudioStreamMP3.new()
+	#stream.data = body 
+#
+	#var player = AudioStreamPlayer.new()
+	#add_child(player)
+	#player.stream = stream
+	#player.play()
+	get_tree().change_scene_to_file("res://maps/custom_level.tscn")
+
+
 	
 
 

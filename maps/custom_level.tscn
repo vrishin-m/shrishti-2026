@@ -9,8 +9,8 @@
 script = ExtResource("1_ng0x7")
 
 [node name="character" parent="." instance=ExtResource("2_6mb25")]
-position = Vector2(83, 404)
-scale = Vector2(0.587093, 0.635587)
+position = Vector2(83, 393)
+scale = Vector2(1.00647, 0.998671)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://rmp860xpggxe" path="res://player/character.gd" id="1_afh3s"]
 [ext_resource type="Script" uid="uid://dxtwnm7m216dr" path="res://player/state_machine_controller.gd" id="2_74pxd"]
-[ext_resource type="Texture2D" uid="uid://g7e3m1wo2o4v" path="res://sprites/Making2.png" id="2_jx7c6"]
+[ext_resource type="Texture2D" uid="uid://cdxvwp8gpu3j5" path="res://sprites/char1withoutobstacle.png" id="2_jx7c6"]
 [ext_resource type="Script" uid="uid://ds6xc7vuu42yn" path="res://player/node_state_machine.gd" id="3_xhlcg"]
 [ext_resource type="Script" uid="uid://b5fhk0jrvddpe" path="res://player/jump.gd" id="4_74pxd"]
 [ext_resource type="Script" uid="uid://dfg0wvlno7pvn" path="res://player/wave.gd" id="4_xhlcg"]
@@ -255,7 +255,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jx7c6"]
-size = Vector2(183, 369)
+size = Vector2(110, 369)
 
 [node name="character" type="CharacterBody2D"]
 script = ExtResource("1_afh3s")
@@ -280,7 +280,7 @@ player = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="Timer" type="Timer" parent="StateMachineController"]
-wait_time = 0.2
+wait_time = 0.3
 one_shot = true
 
 [node name="NodeStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state", "character", "anim_player")]
@@ -337,7 +337,7 @@ collision_layer = 255
 collision_mask = 255
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="timing_detector"]
-position = Vector2(397.5, -27.5)
+position = Vector2(361, -27.5)
 shape = SubResource("RectangleShape2D_jx7c6")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachineController" method="_on_animation_player_animation_finished"]

@@ -1,11 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://jxxffdssv8pl"]
 
 [ext_resource type="Script" uid="uid://b6w2ccieewpfu" path="res://obstacles/obstacle.gd" id="1_dewa0"]
-[ext_resource type="Texture2D" uid="uid://r4ugudmdw8ku" path="res://sprites/gvff.png" id="2_dewa0"]
+[ext_resource type="Texture2D" uid="uid://4p55xfu47hi7" path="res://sprites/crossloop.png" id="2_dewa0"]
 
 [node name="Crossloop" type="Node2D" groups=["obstacles"]]
 script = ExtResource("1_dewa0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 54)
+position = Vector2(0, 65)
+scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_dewa0")

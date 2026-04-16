@@ -4,7 +4,8 @@ var timestamps: Dictionary
 var times
 var obstacles
 var chosen_obst
-var run_time=0.0
+var run_time= (1200-83)/7.0
+var time_adjustment=1.8
 
 class obstacle_class extends Node:
 	var scene
@@ -12,6 +13,7 @@ class obstacle_class extends Node:
 		var obst_scene = self.scene
 		var instance = obst_scene.instantiate()
 		instance.global_position = Vector2(1200,370)
+		instance.scale = Vector2(0.8,0.8)
 		var tree = Engine.get_main_loop() as SceneTree
 		tree.current_scene.add_child(instance)
 		
@@ -43,19 +45,29 @@ func read_json(file_path: String):
 		if data:
 			print(data)
 			return data
-			
+	
+	
+	
+	
 
 func _ready() -> void:
 	timestamps = global.json
 	times = timestamps.keys()
 	obstacles = timestamps.values()
 	
+	var stream = AudioStreamMP3.new()
+	stream.data = global.song 
+
+	var player = AudioStreamPlayer.new()
+	add_child(player)
+	player.stream = stream
+	player.play()
 	
 
 func _physics_process(delta: float) -> void:
 	run_time +=delta
 	if times:
-		if float(times[0])-  run_time <=0.01:
+		if float(times[0])- time_adjustment- run_time <=0.01:
 			print("NUTJAUJNGJBGAGR")
 			if len(obstacles[0]) >1:
 				chosen_obst = Array(obstacles[0].split(""))
