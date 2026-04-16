@@ -10,10 +10,12 @@ so there is only one animation per state '''
 extends Node
 
 @export var node_state_machine: NodeStateMachine
-var current_node_state_name: String
+
 @export var player: CharacterBody2D
 @export var anim_player: AnimationPlayer
-@export var gamemode: String
+var gamemode = "singleplayer"
+var can_two_states = false
+var requested_state = "walk"
 
 func _ready() -> void:
 	pass
@@ -24,6 +26,7 @@ func _ready() -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	node_state_machine.transition_to("walk")
+	requested_state="walk"
 			
 
 
@@ -31,17 +34,40 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _input(event: InputEvent) -> void:
 	if gamemode == "singleplayer":
-		if node_state_machine.current_node_state_name  == "walk":
-			for i in node_state_machine.node_states:
-				if i !="walk":
+		if can_two_states:
+			print("srjgjta")
+			for i in node_state_machine.inputs:
+				if event.is_action_pressed(i+'1') or event.is_action_pressed(i+'2'):
+					print("HERE")
+					print(i+requested_state)
+					if (i+requested_state) in node_state_machine.node_states:
+						print("NANANAN")
+						node_state_machine.transition_to(i+requested_state)
+					else:
+						node_state_machine.transition_to(requested_state+i)
+					can_two_states=false
+					
+		
+		
+		
+		elif node_state_machine.current_node_state_name  == "walk":
+			for i in node_state_machine.inputs:
 					if event.is_action_pressed(i+'1') or event.is_action_pressed(i+'2'):
-						node_state_machine.transition_to(i)
+						print("the code has arrived here, my lord")
+						requested_state = i
+						$Timer.start()
+						can_two_states = true
+						
+			
+					
+		
 	else:
 		if node_state_machine.current_node_state_name  == "walk":
 			for i in node_state_machine.node_states:
 				if i !="walk":
 					if event.is_action_pressed(i+'1') or event.is_action_pressed(i+'2'):
 						node_state_machine.transition_to(i)
+	
 		
 		
 			
@@ -53,3 +79,10 @@ func _input(event: InputEvent) -> void:
 		
 		
 		
+
+
+func _on_timer_timeout() -> void:
+	if can_two_states:
+		can_two_states= false
+		node_state_machine.transition_to(requested_state)
+	

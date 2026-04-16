@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlsjl5vdwuswn"]
+[gd_scene load_steps=3 format=3 uid="uid://dlsjl5vdwuswn"]
+
+[ext_resource type="Script" uid="uid://dwtr0dlwdtbjd" path="res://ui/main_menu.gd" id="1_t7e0r"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rhts7"]
 
-[node name="Control" type="Control"]
+[node name="main_menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,34 +15,53 @@ offset_right = 1.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_t7e0r")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.50217
-anchor_top = 0.932099
-anchor_right = 0.50217
-anchor_bottom = 0.932099
+anchor_left = 0.498698
+anchor_top = 0.936728
+anchor_right = 0.498698
+anchor_bottom = 0.936728
 offset_left = -93.5
 offset_top = -48.0
 offset_right = 93.5
 grow_horizontal = 2
 grow_vertical = 0
-text = "BEGIN TUTORIAL"
+text = "SUBMIT"
 icon = SubResource("PlaceholderTexture2D_rhts7")
 metadata/_edit_use_anchors_ = true
 
 [node name="LineEdit" type="LineEdit" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.504774
-anchor_top = 0.819444
-anchor_right = 0.504774
-anchor_bottom = 0.819444
+anchor_left = 0.503038
+anchor_top = 0.814815
+anchor_right = 0.503038
+anchor_bottom = 0.814815
 offset_left = -204.5
 offset_top = -55.0
 offset_right = 204.5
 grow_horizontal = 2
 grow_vertical = 0
-placeholder_text = "Enter custom song title"
+placeholder_text = "Enter custom song URL"
 metadata/_edit_use_anchors_ = true
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="mp3_file_request" type="HTTPRequest" parent="."]
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 449.0
+offset_top = 387.0
+offset_right = 706.0
+offset_bottom = 428.0
+text = "Play Tutorial
+"
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="request_completed" from="mp3_file_request" to="." method="_on_mp_3_file_request_request_completed"]
+[connection signal="button_down" from="Button2" to="." method="_on_button_2_button_down"]

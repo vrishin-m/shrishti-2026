@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfx6akig2rsw3"]
+
+[ext_resource type="Script" uid="uid://b6w2ccieewpfu" path="res://obstacles/obstacle.gd" id="1_g2voe"]
+[ext_resource type="Texture2D" uid="uid://b7m1ddwo4xjeg" path="res://sprites/cross.png" id="2_g2voe"]
+
+[node name="Cross" type="Node2D" groups=["obstacles"]]
+script = ExtResource("1_g2voe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 117)
+texture = ExtResource("2_g2voe")

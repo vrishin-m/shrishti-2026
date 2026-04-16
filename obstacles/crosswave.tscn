@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bm4aii6mwotjo"]
+
+[ext_resource type="Script" uid="uid://b6w2ccieewpfu" path="res://obstacles/obstacle.gd" id="1_xwtnp"]
+[ext_resource type="Texture2D" uid="uid://cf56rudfcsm1t" path="res://sprites/jsnjer.png" id="2_xwtnp"]
+
+[node name="Crosswave" type="Node2D" groups=["obstacles"]]
+script = ExtResource("1_xwtnp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xwtnp")

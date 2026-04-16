@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtvpe616mldd8"]
+
+[ext_resource type="Script" uid="uid://b6w2ccieewpfu" path="res://obstacles/obstacle.gd" id="1_dc62v"]
+[ext_resource type="Texture2D" uid="uid://htb5fh0j6ko" path="res://sprites/jump.png" id="2_dc62v"]
+
+[node name="Jump" type="Node2D" groups=["obstacles"]]
+script = ExtResource("1_dc62v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_dc62v")

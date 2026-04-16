@@ -8,11 +8,11 @@ extends Node
 var node_states: Dictionary = {}
 var current_node_state: NodeState
 var current_node_state_name: String
-
+var timing_is_right = false
 const up_gravity = 220
 const down_gravity = 420
 
-
+const inputs = ["wave", "jump", "loop", "cross" ]
 
 func _ready() -> void:
 	
@@ -24,8 +24,7 @@ func _ready() -> void:
 		initial_node_state.enter()
 		current_node_state = initial_node_state
 		current_node_state_name = current_node_state.name
-		print(current_node_state_name)
-
+	anim_player.play(current_node_state_name)
 
 
 func _process(delta: float) -> void:
@@ -39,11 +38,7 @@ func _physics_process(delta: float) -> void:
 		current_node_state.on_physics_process(delta)
 	
 	
-	if !character.is_on_floor():
-		if character.velocity.y <0:
-			character.velocity.y += up_gravity*delta
-		else:
-			character.velocity.y += down_gravity*delta
+	
 
 	
 	character.move_and_slide()
@@ -51,6 +46,7 @@ func _physics_process(delta: float) -> void:
 
 
 func transition_to(node_state_name):
+	print("I HAV EBEEN SUMMONED")
 	if node_state_name == current_node_state.name:
 		return
 	
@@ -64,5 +60,32 @@ func transition_to(node_state_name):
 	new_node_state.enter()
 	current_node_state = new_node_state
 	current_node_state_name = current_node_state.name
-	anim_player.play(current_node_state_name)
-	print(current_node_state_name)
+	if global.current_obst.to_lower() == current_node_state_name.to_lower():
+		print("hey there, im here")
+		if timing_is_right:
+			print("i came here!")
+			anim_player.play(current_node_state_name)
+		else:
+			print("whoops, you timed it wrong!")
+	elif current_node_state_name == "walk":
+		anim_player.play(current_node_state_name)
+	else:
+		print("looks like you pressed the wrong button(s)!")
+	
+	global.character_state = current_node_state_name
+	print("bananaaaaa", current_node_state_name)
+
+
+
+
+
+func _on_timing_detector_area_entered(area: Area2D) -> void:
+	print(area, "MITHUNZZ")
+	if area.is_in_group("obstacles"):
+		timing_is_right = true
+		print("TIMING IS RIGHT")
+
+
+func _on_timing_detector_area_exited(area: Area2D) -> void:
+	print("TIMING IS WRONG")
+	timing_is_right=false

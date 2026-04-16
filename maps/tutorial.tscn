@@ -1,11 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://rhg6t0nwpr3d"]
+[gd_scene load_steps=6 format=3 uid="uid://fh08tdnq88pl"]
 
-[ext_resource type="Script" uid="uid://c8idvv1k34wnq" path="res://maps/tutorial.gd" id="1_g13kn"]
+[ext_resource type="Script" uid="uid://b1b2arreqmmgx" path="res://maps/tutorial_level_real.gd" id="1_fwf7s"]
 [ext_resource type="PackedScene" uid="uid://caaxuiwmdu0x6" path="res://player/character.tscn" id="1_rg8b3"]
+[ext_resource type="Texture2D" uid="uid://cahpi156la7c0" path="res://sprites/backdrop.png" id="3_x7mfr"]
+[ext_resource type="Texture2D" uid="uid://cwitltdqfwot6" path="res://sprites/Line.png" id="4_2337y"]
+[ext_resource type="AudioStream" uid="uid://cvwl6b6j87l2e" path="res://songs/tut_spedup.wav" id="5_50mgq"]
 
-[node name="tutorial" type="Node2D"]
-script = ExtResource("1_g13kn")
+[node name="Node2D" type="Node2D"]
+position = Vector2(0, -1)
+script = ExtResource("1_fwf7s")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_rg8b3")]
-position = Vector2(560, 374)
-scale = Vector2(0.587093, 0.635587)
+[node name="character" parent="." instance=ExtResource("1_rg8b3")]
+position = Vector2(-28, 392)
+
+[node name="tip" type="RichTextLabel" parent="."]
+offset_left = 633.0
+offset_top = 62.0
+offset_right = 809.0
+offset_bottom = 164.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(578, 356)
+scale = Vector2(1.88325, 1.95044)
+texture = ExtResource("3_x7mfr")
+
+[node name="line" type="StaticBody2D" parent="."]
+position = Vector2(575, 431)
+scale = Vector2(1.32, 0.36)
+
+[node name="Sprite2D2" type="Sprite2D" parent="line"]
+z_index = -1
+texture = ExtResource("4_2337y")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_50mgq")
+volume_db = 5.0
+autoplay = true

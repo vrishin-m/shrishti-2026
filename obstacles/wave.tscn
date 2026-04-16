@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwmp54y070chb"]
+
+[ext_resource type="Script" uid="uid://b6w2ccieewpfu" path="res://obstacles/obstacle.gd" id="1_1y5hp"]
+[ext_resource type="Texture2D" uid="uid://3jdmdaxdi3ty" path="res://sprites/wave.png" id="2_1y5hp"]
+
+[node name="Wave" type="Node2D" groups=["obstacles"]]
+script = ExtResource("1_1y5hp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1y5hp")
