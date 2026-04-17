@@ -15,8 +15,8 @@ position = Vector2(-28, 392)
 [node name="tip" type="RichTextLabel" parent="."]
 offset_left = 633.0
 offset_top = 62.0
-offset_right = 809.0
-offset_bottom = 164.0
+offset_right = 916.0
+offset_bottom = 248.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -3

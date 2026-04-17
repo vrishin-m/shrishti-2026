@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3q347jap5c4l"]
+
+[ext_resource type="Texture2D" uid="uid://d26g702fju5nb" path="res://ui/Demo End Screen.png" id="1_70k24"]
+[ext_resource type="Script" uid="uid://b1t0ax8xr2dys" path="res://ui/end_screen.gd" id="1_s243q"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_s243q")
+
+[node name="retry" type="Button" parent="."]
+z_index = -1
+offset_left = 233.0
+offset_top = 385.0
+offset_right = 503.0
+offset_bottom = 459.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(582, 298)
+scale = Vector2(0.68, 0.73)
+texture = ExtResource("1_70k24")
+
+[node name="home" type="Button" parent="."]
+z_index = -1
+offset_left = 605.0
+offset_top = 385.0
+offset_right = 929.0
+offset_bottom = 459.0
+
+[connection signal="button_down" from="retry" to="." method="_on_retry_button_down"]
+[connection signal="button_down" from="home" to="." method="_on_home_button_down"]

@@ -255,7 +255,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jx7c6"]
-size = Vector2(110, 369)
+size = Vector2(89, 369)
 
 [node name="character" type="CharacterBody2D"]
 script = ExtResource("1_afh3s")
@@ -340,9 +340,19 @@ collision_mask = 255
 position = Vector2(361, -27.5)
 shape = SubResource("RectangleShape2D_jx7c6")
 
+[node name="miss_detector" type="Area2D" parent="."]
+collision_layer = 255
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="miss_detector"]
+position = Vector2(27, -26)
+shape = SubResource("RectangleShape2D_jx7c6")
+
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachineController" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="StateMachineController/Timer" to="StateMachineController" method="_on_timer_timeout"]
 [connection signal="area_entered" from="timing_detector" to="NodeStateMachine" method="_on_timing_detector_area_entered"]
 [connection signal="area_exited" from="timing_detector" to="NodeStateMachine" method="_on_timing_detector_area_exited"]
 [connection signal="body_entered" from="timing_detector" to="NodeStateMachine" method="_on_timing_detector_body_entered"]
 [connection signal="body_exited" from="timing_detector" to="NodeStateMachine" method="_on_timing_detector_body_exited"]
+[connection signal="area_entered" from="miss_detector" to="NodeStateMachine" method="_on_miss_detector_area_entered"]
+[connection signal="area_exited" from="miss_detector" to="NodeStateMachine" method="_on_miss_detector_area_exited"]

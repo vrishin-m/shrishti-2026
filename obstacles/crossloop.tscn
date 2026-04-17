@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://4p55xfu47hi7" path="res://sprites/crossloop.png" id="2_dewa0"]
 
 [node name="Crossloop" type="Node2D" groups=["obstacles"]]
+position = Vector2(-7, -33)
 script = ExtResource("1_dewa0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 65)
+position = Vector2(0, 21)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_dewa0")

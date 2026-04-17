@@ -4,7 +4,7 @@ var timestamps: Dictionary
 var times
 var obstacles
 var chosen_obst
-var run_time= (1200-83)/7.0
+var run_time=0.0
 var time_adjustment=1.8
 
 class obstacle_class extends Node:
@@ -12,8 +12,8 @@ class obstacle_class extends Node:
 	func spawn_obstacle():
 		var obst_scene = self.scene
 		var instance = obst_scene.instantiate()
-		instance.global_position = Vector2(1200,370)
-		instance.scale = Vector2(0.8,0.8)
+		instance.global_position = Vector2(1200,400)
+		instance.scale = Vector2(1.4,1.4)
 		var tree = Engine.get_main_loop() as SceneTree
 		tree.current_scene.add_child(instance)
 		

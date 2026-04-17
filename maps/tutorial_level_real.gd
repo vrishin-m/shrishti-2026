@@ -20,6 +20,7 @@ class obstacle_class extends Node:
 		scene = s
 
 
+var timer =0
 	
 var time_adjustment=1.8
 var jump = obstacle_class.new(preload("res://obstacles/jump.tscn"))
@@ -52,6 +53,7 @@ func _ready() -> void:
 	obstacles = timestamps.values()
 	$Button.visible= false
 	$Button.disabled=true
+	$tip.text = "Hi there! Welcome to Muzik! Just follow the instructions to parkour with the rhythm. Let's see if you can keep up!"
 	
 	
 
@@ -92,8 +94,10 @@ func _physics_process(delta: float) -> void:
 			obstacles.remove_at(0)
 		
 	else:
-		$Timer.start()
-		return
+		timer +=1
+		if timer ==1:
+			$Timer.start()
+		
 		
 			
 		

@@ -10,8 +10,8 @@ func _ready() -> void:
 	tip =  get_parent().get_node("tip")
 	if !character:
 		pass
-	print("[OBSTACLE] ready:", self.name)
-	# determine a stable obstacle type: prefer sprite texture name, fall back to node name
+
+	
 	var raw = ""
 	var sprite = get_node_or_null("Sprite2D")
 	if sprite and sprite.texture:
@@ -21,14 +21,14 @@ func _ready() -> void:
 	if raw == "":
 		raw = self.name.to_lower()
 
-	# detect keywords present in the raw name
+
 	var keywords = []
 	var known = ["jump", "cross", "wave", "loop"]
 	for k in known:
 		if raw.find(k) != -1:
 			keywords.append(k)
 
-	# canonical order: jump > cross > wave > loop
+
 	var ordered = []
 	var priority = ["jump", "cross", "wave", "loop"]
 	for p in priority:
@@ -43,7 +43,7 @@ func _ready() -> void:
 			ob += s
 		obstacle_type = ob
 
-	# set tip text for known types (single or combos)
+
 	if obstacle_type == "jump":
 		tip.text = "Press W or Up arrow!"
 	elif obstacle_type == "cross":

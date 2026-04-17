@@ -6,7 +6,12 @@ func ready():
 	
 func take_damage():
 	health -=10
+	print("OWW")
 	
 	
 	
 	
+
+
+func _on_miss_detector_area_exited(area: Area2D) -> void:
+	pass # Replace with function body.

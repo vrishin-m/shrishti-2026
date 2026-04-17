@@ -3,15 +3,21 @@ var json
 
 @onready var http_request = $HTTPRequest
 @onready var mp3_request = $mp3_file_request
-
+func _ready() -> void:
+	$loading.z_index =-4
+	$loading_wheel.z_index =-4
 
 func _on_button_button_down() -> void:
+	$loading.z_index=2
+	$loading_wheel.z_index =3
+	$AnimationPlayer.play("new_animation")
 	var url = $LineEdit.text
 	url = url.split("=")[-1]
-	print(url)
-	var headers = ["Content-Type: application/json"]
-	http_request.request("http://127.0.0.1:8000/song/" + url, headers, HTTPClient.METHOD_GET, url)
-	
+	if url:
+		var headers = ["Content-Type: application/json"]
+		http_request.request("http://127.0.0.1:8000/song/" + url, headers, HTTPClient.METHOD_GET, url)
+	else:
+		print("enter a valid url")
 	
 
 
@@ -60,6 +66,7 @@ func _on_mp_3_file_request_request_completed(result: int, response_code: int, he
 		file.store_buffer(body)
 		file.close()
 		print("saved the song")
+	#get_tree().change_scene_to_file("res://ui/spilt-screen-mode.tscn")	
 	get_tree().change_scene_to_file("res://maps/custom_level.tscn")
 
 
