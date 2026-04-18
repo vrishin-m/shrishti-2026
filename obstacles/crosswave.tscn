@@ -7,5 +7,6 @@
 script = ExtResource("1_xwtnp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 19)
+position = Vector2(0, 21)
+rotation = 3.14159
 texture = ExtResource("2_xwtnp")

@@ -5,9 +5,10 @@
 
 [node name="Loop" type="Node2D" groups=["obstacles"]]
 position = Vector2(0, -46)
+scale = Vector2(1.1, 1.1)
 script = ExtResource("1_gfl1b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -19)
-scale = Vector2(0.5, 0.5)
+position = Vector2(5.32614, -26.733)
+scale = Vector2(0.696252, 0.600682)
 texture = ExtResource("2_gfl1b")

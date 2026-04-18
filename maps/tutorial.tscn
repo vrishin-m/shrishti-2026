@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://fh08tdnq88pl"]
+[gd_scene load_steps=12 format=3 uid="uid://fh08tdnq88pl"]
 
 [ext_resource type="Script" uid="uid://b1b2arreqmmgx" path="res://maps/tutorial_level_real.gd" id="1_fwf7s"]
 [ext_resource type="PackedScene" uid="uid://caaxuiwmdu0x6" path="res://player/character.tscn" id="1_rg8b3"]
 [ext_resource type="Texture2D" uid="uid://cahpi156la7c0" path="res://sprites/backdrop.png" id="3_x7mfr"]
 [ext_resource type="Texture2D" uid="uid://cwitltdqfwot6" path="res://sprites/Line.png" id="4_2337y"]
 [ext_resource type="AudioStream" uid="uid://cvwl6b6j87l2e" path="res://songs/tut_spedup.wav" id="5_50mgq"]
+[ext_resource type="Texture2D" uid="uid://bbxysmbn4gl1u" path="res://ui/dark_up.png" id="8_tbce6"]
+[ext_resource type="Texture2D" uid="uid://d1u4jfv23urvy" path="res://ui/dark_left.png" id="9_4gvda"]
+[ext_resource type="Texture2D" uid="uid://ba7g4o3qtu5nc" path="res://ui/dark_down.png" id="9_ju2a6"]
+[ext_resource type="Texture2D" uid="uid://cexornh71j1ka" path="res://ui/dark_right.png" id="10_fqkom"]
+[ext_resource type="Script" uid="uid://d2cydtl78vnuu" path="res://cam_shake.gd" id="11_58lna"]
+[ext_resource type="FontFile" uid="uid://dritg7xsab4rq" path="res://ui/gomarice_game_continue_03.ttf" id="11_fqkom"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_fwf7s")
@@ -12,13 +18,7 @@ script = ExtResource("1_fwf7s")
 [node name="character" parent="." instance=ExtResource("1_rg8b3")]
 position = Vector2(-28, 392)
 
-[node name="tip" type="RichTextLabel" parent="."]
-offset_left = 633.0
-offset_top = 62.0
-offset_right = 916.0
-offset_bottom = 248.0
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="bg" type="Sprite2D" parent="."]
 z_index = -3
 position = Vector2(578, 356)
 scale = Vector2(1.88325, 1.95044)
@@ -47,6 +47,41 @@ text = "Go back to menu"
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="up" type="Sprite2D" parent="."]
+position = Vector2(1017, 120)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("8_tbce6")
+
+[node name="down" type="Sprite2D" parent="."]
+position = Vector2(1017, 170)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("9_ju2a6")
+
+[node name="left" type="Sprite2D" parent="."]
+position = Vector2(971, 168)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("9_4gvda")
+
+[node name="right" type="Sprite2D" parent="."]
+position = Vector2(1065, 169)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("10_fqkom")
+
+[node name="tip" type="RichTextLabel" parent="."]
+offset_left = 633.0
+offset_top = 62.0
+offset_right = 916.0
+offset_bottom = 248.0
+theme_override_fonts/normal_font = ExtResource("11_fqkom")
+theme_override_font_sizes/normal_font_size = 32
+text = "
+"
+fit_content = true
+
+[node name="cam" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("11_58lna")
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

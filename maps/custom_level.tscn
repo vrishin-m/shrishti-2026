@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://1m20l3a5mhuj"]
+[gd_scene load_steps=11 format=3 uid="uid://1m20l3a5mhuj"]
 
 [ext_resource type="Script" uid="uid://c8idvv1k34wnq" path="res://maps/tutorial.gd" id="1_ng0x7"]
 [ext_resource type="PackedScene" uid="uid://caaxuiwmdu0x6" path="res://player/character.tscn" id="2_6mb25"]
 [ext_resource type="Texture2D" uid="uid://cahpi156la7c0" path="res://sprites/backdrop.png" id="3_6mb25"]
+[ext_resource type="FontFile" uid="uid://dritg7xsab4rq" path="res://ui/gomarice_game_continue_03.ttf" id="3_jj8an"]
 [ext_resource type="Texture2D" uid="uid://cwitltdqfwot6" path="res://sprites/Line.png" id="4_i6j3w"]
+[ext_resource type="Texture2D" uid="uid://bbxysmbn4gl1u" path="res://ui/dark_up.png" id="6_u6jjb"]
+[ext_resource type="Texture2D" uid="uid://ba7g4o3qtu5nc" path="res://ui/dark_down.png" id="7_5ow7s"]
+[ext_resource type="Texture2D" uid="uid://d1u4jfv23urvy" path="res://ui/dark_left.png" id="8_m52l3"]
+[ext_resource type="Texture2D" uid="uid://cexornh71j1ka" path="res://ui/dark_right.png" id="9_dsn5p"]
+[ext_resource type="Script" uid="uid://d2cydtl78vnuu" path="res://cam_shake.gd" id="10_5ow7s"]
 
 [node name="custom_level" type="Node2D"]
 script = ExtResource("1_ng0x7")
@@ -16,8 +22,13 @@ offset_left = 633.0
 offset_top = 62.0
 offset_right = 916.0
 offset_bottom = 248.0
+theme_override_fonts/normal_font = ExtResource("3_jj8an")
+theme_override_font_sizes/normal_font_size = 32
+text = "
+"
+fit_content = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="bg" type="Sprite2D" parent="."]
 z_index = -3
 position = Vector2(578, 356)
 scale = Vector2(1.88325, 1.95044)
@@ -30,3 +41,27 @@ scale = Vector2(1.32, 0.36)
 [node name="Sprite2D2" type="Sprite2D" parent="line"]
 z_index = -1
 texture = ExtResource("4_i6j3w")
+
+[node name="up" type="Sprite2D" parent="."]
+position = Vector2(1017, 120)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("6_u6jjb")
+
+[node name="down" type="Sprite2D" parent="."]
+position = Vector2(1017, 170)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("7_5ow7s")
+
+[node name="left" type="Sprite2D" parent="."]
+position = Vector2(971, 168)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("8_m52l3")
+
+[node name="right" type="Sprite2D" parent="."]
+position = Vector2(1065, 169)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("9_dsn5p")
+
+[node name="cam" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("10_5ow7s")

@@ -1,37 +1,131 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3th0o17n48cb"]
+[gd_scene load_steps=12 format=3 uid="uid://b3th0o17n48cb"]
 
-[ext_resource type="PackedScene" uid="uid://1m20l3a5mhuj" path="res://maps/custom_level.tscn" id="1_505f2"]
+[ext_resource type="PackedScene" uid="uid://caaxuiwmdu0x6" path="res://player/character.tscn" id="1_thohg"]
+[ext_resource type="Script" uid="uid://s60d2h4bc6xp" path="res://ui/spilt_screen_mode.gd" id="1_usd42"]
+[ext_resource type="Texture2D" uid="uid://cahpi156la7c0" path="res://sprites/backdrop.png" id="2_usd42"]
+[ext_resource type="Texture2D" uid="uid://cwitltdqfwot6" path="res://sprites/Line.png" id="3_12ub8"]
+[ext_resource type="AudioStream" uid="uid://cvwl6b6j87l2e" path="res://songs/tut_spedup.wav" id="4_i0v77"]
+[ext_resource type="PackedScene" uid="uid://cr08yl05cgjhm" path="res://ui/cam_shake.tscn" id="5_08e1u"]
+[ext_resource type="Texture2D" uid="uid://bbxysmbn4gl1u" path="res://ui/dark_up.png" id="6_2blgi"]
+[ext_resource type="Texture2D" uid="uid://ba7g4o3qtu5nc" path="res://ui/dark_down.png" id="7_aaesf"]
+[ext_resource type="Texture2D" uid="uid://d1u4jfv23urvy" path="res://ui/dark_left.png" id="8_s5yic"]
+[ext_resource type="Texture2D" uid="uid://cexornh71j1ka" path="res://ui/dark_right.png" id="9_vukcq"]
+[ext_resource type="FontFile" uid="uid://dritg7xsab4rq" path="res://ui/gomarice_game_continue_03.ttf" id="10_0fqo2"]
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(-13, -287)
+script = ExtResource("1_usd42")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_right = 1153.0
-offset_bottom = 644.0
+[node name="character" parent="." instance=ExtResource("1_thohg")]
+position = Vector2(30, 252)
+scale = Vector2(0.6, 0.6)
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-stretch = true
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+z_index = -3
+position = Vector2(578, 356)
+scale = Vector2(1.88325, 1.95044)
+texture = ExtResource("2_usd42")
 
-[node name="SubViewport" type="SubViewport" parent="VBoxContainer/SubViewportContainer"]
-disable_3d = true
-own_world_3d = true
-handle_input_locally = false
-size = Vector2i(1153, 320)
-render_target_update_mode = 4
+[node name="line" type="StaticBody2D" parent="."]
+position = Vector2(572, 276)
+scale = Vector2(1.32, 0.36)
 
-[node name="custom_level" parent="VBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_505f2")]
+[node name="Sprite2D2" type="Sprite2D" parent="line"]
+z_index = -1
+texture = ExtResource("3_12ub8")
 
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-stretch = true
+[node name="line2" type="StaticBody2D" parent="."]
+position = Vector2(572, 588)
+scale = Vector2(1.32, 0.36)
 
-[node name="SubViewport" type="SubViewport" parent="VBoxContainer/SubViewportContainer2"]
-disable_3d = true
-own_world_3d = true
-handle_input_locally = false
-size = Vector2i(1153, 320)
-render_target_update_mode = 4
+[node name="Sprite2D2" type="Sprite2D" parent="line2"]
+z_index = -1
+texture = ExtResource("3_12ub8")
 
-[node name="custom_level" parent="VBoxContainer/SubViewportContainer2/SubViewport" instance=ExtResource("1_505f2")]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_i0v77")
+volume_db = 5.0
+autoplay = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="cam" parent="." instance=ExtResource("5_08e1u")]
+position = Vector2(575, 326)
+
+[node name="up" type="Sprite2D" parent="."]
+position = Vector2(1039.87, 53.3546)
+scale = Vector2(0.306672, 0.360258)
+texture = ExtResource("6_2blgi")
+
+[node name="down" type="Sprite2D" parent="."]
+position = Vector2(1040, 95)
+scale = Vector2(0.306672, 0.360258)
+texture = ExtResource("7_aaesf")
+
+[node name="left" type="Sprite2D" parent="."]
+position = Vector2(1006, 95)
+scale = Vector2(0.306672, 0.360258)
+texture = ExtResource("8_s5yic")
+
+[node name="right" type="Sprite2D" parent="."]
+position = Vector2(1074, 95)
+scale = Vector2(0.306672, 0.360258)
+texture = ExtResource("9_vukcq")
+
+[node name="character2" parent="." instance=ExtResource("1_thohg")]
+position = Vector2(29.6801, 566)
+scale = Vector2(0.6, 0.6)
+
+[node name="up2" type="Sprite2D" parent="."]
+position = Vector2(1039.55, 367.355)
+scale = Vector2(0.306672, 0.360258)
+texture = ExtResource("6_2blgi")
+
+[node name="down2" type="Sprite2D" parent="."]
+position = Vector2(1039.68, 409)
+scale = Vector2(0.306672, 0.360258)
+texture = ExtResource("7_aaesf")
+
+[node name="left2" type="Sprite2D" parent="."]
+position = Vector2(1005.68, 409)
+scale = Vector2(0.306672, 0.360258)
+texture = ExtResource("8_s5yic")
+
+[node name="right2" type="Sprite2D" parent="."]
+position = Vector2(1073.68, 409)
+scale = Vector2(0.306672, 0.360258)
+texture = ExtResource("9_vukcq")
+
+[node name="tip" type="RichTextLabel" parent="."]
+offset_left = 651.0
+offset_top = 14.0
+offset_right = 934.0
+offset_bottom = 200.0
+scale = Vector2(0.997377, 0.698854)
+theme_override_fonts/normal_font = ExtResource("10_0fqo2")
+theme_override_font_sizes/normal_font_size = 20
+text = "
+"
+fit_content = true
+metadata/_edit_use_anchors_ = true
+
+[node name="tip2" type="RichTextLabel" parent="."]
+anchors_preset = -1
+anchor_left = -2.24367
+anchor_top = 2.53269
+anchor_right = -2.24367
+anchor_bottom = 2.53269
+offset_left = 667.0
+offset_top = 353.0
+offset_right = 950.0
+offset_bottom = 539.0
+scale = Vector2(0.997377, 0.698854)
+theme_override_fonts/normal_font = ExtResource("10_0fqo2")
+theme_override_font_sizes/normal_font_size = 20
+text = "
+"
+fit_content = true
+metadata/_edit_use_anchors_ = true

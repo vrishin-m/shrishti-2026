@@ -43,6 +43,7 @@ func _input(event: InputEvent) -> void:
 			for i in modified_list:
 				if Input.is_action_pressed(i+'1') or Input.is_action_pressed(i+'2'):
 					var candidate = i + requested_state
+					print(candidate, "candidate")
 					if candidate in node_state_machine.node_states:
 						node_state_machine.transition_to(candidate)
 					elif (requested_state + i) in node_state_machine.node_states:
@@ -51,16 +52,15 @@ func _input(event: InputEvent) -> void:
 					else:
 						node_state_machine.transition_to(requested_state)
 					can_two_states=false
-					
-		
-		
-		
+
 		elif node_state_machine.current_node_state_name  == "walk":
+
 			for i in node_state_machine.inputs:
 				if Input.is_action_just_pressed(i+'1') or Input.is_action_just_pressed(i+'2'):
 					requested_state = i
-					$Timer.start()
-					can_two_states = true
+					if $Timer.is_stopped():
+						$Timer.start()
+						can_two_states = true
 						
 			
 					
@@ -89,3 +89,4 @@ func _on_timer_timeout() -> void:
 	if can_two_states:
 		can_two_states= false
 		node_state_machine.transition_to(requested_state)
+	requested_state="walk"

@@ -54,7 +54,10 @@ func _ready() -> void:
 	$Button.visible= false
 	$Button.disabled=true
 	$tip.text = "Hi there! Welcome to Muzik! Just follow the instructions to parkour with the rhythm. Let's see if you can keep up!"
-	
+	$up.modulate.a =0.5
+	$down.modulate.a =0.5
+	$left.modulate.a =0.5
+	$right.modulate.a =0.5
 	
 
 func _physics_process(delta: float) -> void:
